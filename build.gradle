@@ -1,16 +1,25 @@
 plugins {
     id 'java'
+    id 'application'
+    id 'com.github.johnrengelman.shadow' version '2.0.1'
 }
 
 group 'com.github.justinhodev'
-version '1.0-SNAPSHOT'
 
-sourceCompatibility = 1.8
+mainClassName = 'schedulebot.Main'
+
+version '1.0-SNAPSHOT'
+def jdaVersion = '3.8.3_462'
+
+sourceCompatibility = targetCompatibility = 1.8
 
 repositories {
     mavenCentral()
+    jcenter()
 }
 
 dependencies {
-    implementation 'org.javacord:javacord:3.0.3'
+    compile "net.dv8tion:JDA:$jdaVersion"
 }
+
+compileJava.options.encoding = 'UTF-8'
