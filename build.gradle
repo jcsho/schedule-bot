@@ -4,7 +4,7 @@ plugins {
     id 'com.github.johnrengelman.shadow' version '2.0.1'
 }
 
-group 'com.github.justinhodev'
+group 'schedule.bot'
 
 mainClassName = 'schedulebot.Main'
 
@@ -20,6 +20,7 @@ repositories {
 
 dependencies {
     compile "net.dv8tion:JDA:$jdaVersion"
+    compile(group: 'org.postgresql', name: 'postgresql', version: '42.2.5')
 }
 
 compileJava.options.encoding = 'UTF-8'
