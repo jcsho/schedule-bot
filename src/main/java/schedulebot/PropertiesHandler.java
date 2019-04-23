@@ -17,12 +17,12 @@ public class PropertiesHandler {
      * @throws URISyntaxException
      * @throws IOException
      */
-    public PropertiesHandler(String filename) throws URISyntaxException, IOException {
+    public PropertiesHandler(String filename) throws IOException {
         this.fileName = filename;
         initializaProperties();
     }
 
-    private void initializaProperties() throws URISyntaxException, IOException {
+    private void initializaProperties() throws IOException {
         properties = new Properties();
 
         String path = "src/main/resources/" + fileName + ".properties";
