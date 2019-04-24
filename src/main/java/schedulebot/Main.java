@@ -10,7 +10,7 @@ public class Main extends ListenerAdapter {
     /**
      * @throws Exception
      */
-    public static void main() throws Exception {
+    public static void main(String[] args) throws Exception {
         try {
             // read token property from bot-token.properties file
             String token = new PropertiesHandler("bot-token").get("token");
