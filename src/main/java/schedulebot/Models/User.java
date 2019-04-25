@@ -15,7 +15,7 @@ public class User {
         this.discord_tag = tag;
     }
 
-    // getters
+    // accessors
     public String getName() { return discord_name; }
     public Integer getTag() { return discord_tag; }
     public String getDisplayName() {
@@ -24,7 +24,7 @@ public class User {
         return displayName;
     }
 
-    // setters
+    // mutators
     public void setName(String name) { this.discord_name = name; }
     public void setTag(Integer tag) { this.discord_tag = tag; }
 }

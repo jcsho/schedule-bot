@@ -7,8 +7,10 @@ import java.util.List;
  * @author Justin Ho
  */
 public class UserDao implements Dao<User> {
+    private List<User> users;
 
     public UserDao() {
+        users = new ArrayList<>();
     }
 
     public User get(String name, Integer id) {
@@ -17,7 +19,6 @@ public class UserDao implements Dao<User> {
 
     @Override
     public List getAll() {
-        List<User> users = new ArrayList<>();
         // TODO get all users from User table
         return users;
     }
