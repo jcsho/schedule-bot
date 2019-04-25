@@ -1,15 +1,14 @@
 plugins {
     id 'java'
     id 'application'
-    id 'com.github.johnrengelman.shadow' version '2.0.1'
+    id 'idea'
 }
 
-group 'com.github.justinhodev'
+group 'schedule.bot'
+
+version '0.1.0'
 
 mainClassName = 'schedulebot.Main'
-
-version '1.0-SNAPSHOT'
-def jdaVersion = '3.8.3_462'
 
 sourceCompatibility = targetCompatibility = 1.8
 
@@ -18,8 +17,14 @@ repositories {
     jcenter()
 }
 
+
 dependencies {
-    compile "net.dv8tion:JDA:$jdaVersion"
+    implementation 'net.dv8tion:JDA:3.8.3_462'
+    implementation 'org.postgresql:postgresql:42.2.5'
+    implementation 'org.apache.logging.log4j:log4j-core:2.8.2'
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.4.2'
 }
 
-compileJava.options.encoding = 'UTF-8'
+test {
+    useJUnitPlatform()
+}
