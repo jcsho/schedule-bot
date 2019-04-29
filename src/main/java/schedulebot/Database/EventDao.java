@@ -1,4 +1,6 @@
-package schedulebot.Models;
+package schedulebot.Database;
+
+import schedulebot.Models.Event;
 
 import java.util.List;
 

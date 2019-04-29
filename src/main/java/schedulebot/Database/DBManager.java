@@ -1,21 +1,20 @@
-package schedulebot;
+package schedulebot.Database;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
+import schedulebot.PropertiesHandler;
+
+import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class Database {
+public class DBManager {
 
-    private static final Logger LOG = Logger.getLogger(Database.class.getName());
+    private static final Logger LOG = Logger.getLogger(DBManager.class.getName());
     private final String file = "db-credentials";
     private String url, user, pwd;
     private Connection db;
 
 
-    public Database() {
+    public DBManager() {
         try {
             this.db = null;
             PropertiesHandler dbCredentials = new PropertiesHandler(file);
@@ -27,16 +26,16 @@ public class Database {
         }
     }
 
-    private void connect() {
+    public void connect() {
         try {
             this.db = DriverManager.getConnection(url, user, pwd);
+            LOG.fine("Connected to database: " + url);
         } catch (SQLException e) {
             LOG.log(Level.SEVERE, "Failed to connect to database: " + url, e);
         }
-        LOG.fine("Connected to database: " + url);
     }
 
-    private void disconnect() {
+    public void disconnect() {
             try {
                 db.close();
                 LOG.fine("Connection to " + url + " closed");
@@ -45,22 +44,23 @@ public class Database {
             }
     }
 
-    public void createTable() {
+    public Connection getConnection() { return db; }
+
+    public ResultSet query(String arg) {
+        ResultSet rs = null;
         try {
             connect();
-            Statement query = db.createStatement();
-            String createUserTable = "CREATE TABLE IF NOT EXIST User " +
-                    "(id INT PRIMARY KEY NOT NULL, " +
-                    "discord_name varchar(255) " +
-                    "discord_tag int(4) " +
-                    ");";
-            query.execute(createUserTable);
-            query.close();
-            LOG.fine("Executed SQL query: " + createUserTable);
+            Statement stmt = db.createStatement();
+            rs = stmt.executeQuery(arg);
+            stmt.close();
+            LOG.fine("Executed SQL query: " + arg);
         } catch (SQLException e) {
-            LOG.log(Level.WARNING, "Could not create table ", e);
+            LOG.log(Level.WARNING, "Could not execute query ", e);
         } finally {
             disconnect();
         }
+
+        if (rs == null) throw new Error("Could not find anything");
+        return rs;
     }
 }
