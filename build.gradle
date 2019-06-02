@@ -1,16 +1,61 @@
 plugins {
     id 'java'
+    id 'application'
+    id 'idea'
+    id 'checkstyle'
+    id 'jacoco'
 }
 
-group 'com.github.justinhodev'
-version '1.0-SNAPSHOT'
+group 'schedule.bot'
 
-sourceCompatibility = 1.8
+version '0.1.0'
+
+mainClassName = 'schedulebot.Main'
+
+sourceCompatibility = targetCompatibility = 1.8
 
 repositories {
     mavenCentral()
+    jcenter()
 }
 
+
 dependencies {
-    implementation 'org.javacord:javacord:3.0.3'
+    implementation 'net.dv8tion:JDA:3.8.3_462'
+    implementation 'org.postgresql:postgresql:42.2.5'
+
+    implementation 'org.apache.logging.log4j:log4j-api:2.11.2'
+    implementation 'org.apache.logging.log4j:log4j-core:2.11.2'
+    implementation 'org.apache.logging.log4j:log4j-slf4j-impl:2.11.2'
+    implementation 'org.slf4j:slf4j-api:1.7.25'
+
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.4.2'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.4.2'
+}
+
+test {
+    useJUnitPlatform()
+    testLogging {
+        events 'PASSED', 'FAILED', 'SKIPPED'
+    }
+    afterSuite { desc, result ->
+        if (!desc.parent) {
+            println "\nTest Result: ${result.resultType}"
+            println "Test Summary: ${result.testCount} test(s), " +
+                    "${result.successfulTestCount} succeeded, " +
+                    "${result.failedTestCount} failed, " +
+                    "${result.skippedTestCount} skipped"
+        }
+    }
+}
+
+test.finalizedBy jacocoTestReport
+
+checkstyle {
+    config = rootProject.resources.text.fromFile('config/checkstyle/checkstyle.xml')
+    toolVersion = '8.11'
+}
+
+jacoco {
+    toolVersion = '0.8.4'
 }
