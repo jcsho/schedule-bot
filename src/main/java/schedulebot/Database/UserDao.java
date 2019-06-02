@@ -9,10 +9,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * Data Access Object for the {@link schedulebot.Models.User User} Model
  * @author Justin Ho
+ * @version 0.1.0
  */
 public class UserDao implements Dao<User> {
+    /**
+     * List of all users in the db
+     */
     private List<User> users;
+    /**
+     * Connection object of type {@link schedulebot.Database.DBManager DBManager}
+     */
     private DBManager db;
 
     /**
@@ -23,6 +31,11 @@ public class UserDao implements Dao<User> {
         this.users = new ArrayList<>();
     }
 
+    /**
+     * Get a single user from db by name
+     * @param name - the discord name to search for
+     * @return a {@link schedulebot.Models.User User} object matching param name
+     */
     public User getUser(String name) {
         User user = null;
         try {
@@ -41,6 +54,10 @@ public class UserDao implements Dao<User> {
         return user;
     }
 
+    /**
+     * Return all users from the db
+     * @return list of all users in db
+     */
     @Override
     public List getAll() {
         try {
@@ -65,7 +82,7 @@ public class UserDao implements Dao<User> {
     }
 
     @Override
-    public boolean update(User user , String[] params) {
+    public boolean update(User user) {
         // TODO modify row from User table
         return false;
     }
@@ -76,6 +93,12 @@ public class UserDao implements Dao<User> {
         return false;
     }
 
+    /**
+     * Format db result into {@link schedulebot.Models.User User} model
+     * @param rs - result from db
+     * @return a {@link schedulebot.Models.User User} object
+     * @throws SQLException
+     */
     private User extractFromRS(ResultSet rs) throws SQLException {
         User user = new User();
 
