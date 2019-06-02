@@ -23,7 +23,12 @@ repositories {
 dependencies {
     implementation 'net.dv8tion:JDA:3.8.3_462'
     implementation 'org.postgresql:postgresql:42.2.5'
-    implementation 'org.apache.logging.log4j:log4j-core:2.8.2'
+
+    implementation 'org.apache.logging.log4j:log4j-api:2.11.2'
+    implementation 'org.apache.logging.log4j:log4j-core:2.11.2'
+    implementation 'org.apache.logging.log4j:log4j-slf4j-impl:2.11.2'
+    implementation 'org.slf4j:slf4j-api:1.7.25'
+
     testImplementation 'org.junit.jupiter:junit-jupiter:5.4.2'
 }
 
