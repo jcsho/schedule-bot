@@ -2,6 +2,7 @@ plugins {
     id 'java'
     id 'application'
     id 'idea'
+    id 'checkstyle'
 }
 
 group 'schedule.bot'
@@ -27,4 +28,9 @@ dependencies {
 
 test {
     useJUnitPlatform()
+}
+
+checkstyle {
+    config = rootProject.resources.text.fromFile('config/checkstyle/checkstyle.xml')
+    toolVersion = '8.11'
 }
