@@ -4,6 +4,9 @@ jdk:
 
 sudo: false
 
+# see https://stackoverflow.com/questions/33820638/travis-yml-gradlew-permission-denied
+before_install:
+  - chmod +x gradlew
 install: true
 
 before_cache:
