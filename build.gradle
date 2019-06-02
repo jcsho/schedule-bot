@@ -3,6 +3,7 @@ plugins {
     id 'application'
     id 'idea'
     id 'checkstyle'
+    id 'jacoco'
 }
 
 group 'schedule.bot'
@@ -30,7 +31,13 @@ test {
     useJUnitPlatform()
 }
 
+test.finalizedBy jacocoTestReport
+
 checkstyle {
     config = rootProject.resources.text.fromFile('config/checkstyle/checkstyle.xml')
     toolVersion = '8.11'
+}
+
+jacoco {
+    toolVersion = '0.8.4'
 }
