@@ -8,35 +8,36 @@ import java.util.Properties;
 
 public class PropertiesHandler {
 
-    private Properties properties;
-    private String fileName;
-    private File file;
+  private Properties properties;
+  private String fileName;
+  private File file;
 
-    /**
-     * @param filename
-     * @throws URISyntaxException
-     * @throws IOException
-     */
-    public PropertiesHandler(String filename) throws IOException {
-        this.fileName = filename;
-        initializaProperties();
-    }
+  /**
+   * Default constructor.
+   * @param filename - file to check
+   * @throws URISyntaxException - file path is formatted incorrectly
+   * @throws IOException - cannot find file
+   */
+  public PropertiesHandler(String filename) throws IOException {
+    this.fileName = filename;
+    initializaProperties();
+  }
 
-    private void initializaProperties() throws IOException {
-        properties = new Properties();
+  private void initializaProperties() throws IOException {
+    properties = new Properties();
 
-        String path = "src/main/resources/" + fileName + ".properties";
-        file = new File(path);
+    String path = "src/main/resources/" + fileName + ".properties";
+    file = new File(path);
 
-        properties.load(new FileInputStream(file));
-    }
+    properties.load(new FileInputStream(file));
+  }
 
-    /**
-     *
-     * @param key
-     * @return String
-     */
-    public String get(String key) {
-        return properties.getProperty(key);
-    }
+  /**
+   * Get property from config file.
+   * @param key - string value of property
+   * @return string of property key
+   */
+  public String get(String key) {
+    return properties.getProperty(key);
+  }
 }

@@ -12,6 +12,9 @@ src/**/*.properties
 
 # VSCode settings
 .vscode
+.project
+.classpath
+bin
 
 # Package Files #
 *.jar

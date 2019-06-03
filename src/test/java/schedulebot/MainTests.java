@@ -9,10 +9,10 @@ import org.junit.jupiter.api.Test;
 @DisplayName("Turning on Schedule Bot")
 public class MainTests {
 
-    @Test
-    @DisplayName("logging into Discord")
-    public void botLoginReturnSuccess() {
-        // TODO assert login succeeds
-    }
+  @Test
+  @DisplayName("logging into Discord")
+  public void botLoginReturnSuccess() {
+    // TODO assert login succeeds
+  }
 
 }
