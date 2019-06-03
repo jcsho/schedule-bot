@@ -52,10 +52,18 @@ test {
 test.finalizedBy jacocoTestReport
 
 checkstyle {
-    config = rootProject.resources.text.fromFile('config/checkstyle/checkstyle.xml')
+    configFile = file("${rootDir}/config/checkstyle/checkstyle.xml")
     toolVersion = '8.11'
 }
 
 jacoco {
     toolVersion = '0.8.4'
+}
+
+task Checkstyle(type: Checkstyle) {
+    source 'src/main/java'
+    include '**/*.java'
+
+    // empty classpath
+    classpath = rootProject.files()
 }
