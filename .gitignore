@@ -7,6 +7,12 @@
 # Secrets
 src/**/*.properties
 
+# Eclipse settings
+.settings
+
+# VSCode settings
+.vscode
+
 # Package Files #
 *.jar
 *.war
