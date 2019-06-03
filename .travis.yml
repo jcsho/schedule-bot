@@ -20,4 +20,4 @@ cache:
 script:
   # omitting test step to follow gradle doc guide https://guides.gradle.org/executing-gradle-builds-on-travisci/ first
   # ./gradlew test
-  ./gradlew build --scan -s
+  ./gradlew build
