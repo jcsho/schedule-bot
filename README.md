@@ -1,10 +1,14 @@
 # Schedule Bot
+[![Build Status](https://travis-ci.org/justinhodev/schedule-bot.svg?branch=master)](https://travis-ci.org/justinhodev/schedule-bot)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 Discord bot for scheduling events
 
 ## Table of Contents
 [Installation](#installation)
+
 [Usage](#usage)
+
 [License](#license)
 
 ## Installation
